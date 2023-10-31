@@ -7,8 +7,9 @@ import (
 // Returning a view
 func SiteIndex(c *fiber.Ctx) error {
 	return c.Render("index", fiber.Map{
-		"Title": "Go Blast! Do less, do Betterr!",
-	})
+		"Title":       "Just a web framework, to have a blast!",
+		"Description": "High performance, less latency, minimalist Go web framework",
+	}, "layouts/main")
 }
 
 // Returning a JSON
