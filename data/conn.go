@@ -33,12 +33,5 @@ func ConnectDB() {
 		panic("Failed to connect to database!")
 	}
 
-	// err = database.AutoMigrate(
-	// 	&models.SomeModel{},
-	// )
-	// if err != nil {
-	// 	return
-	// }
-
 	DB = database
 }
