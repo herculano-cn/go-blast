@@ -4,6 +4,7 @@ import (
 	"blast/app/handlers"
 	"blast/config"
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -23,5 +24,5 @@ func BuildNewRoutes() {
 	r.Get("/", handlers.SiteIndex)
 	r.Get("/health", handlers.HealthCheck)
 
-	log.Fatal(r.Listen(":8080"))
+	log.Fatal(r.Listen(":" + os.Getenv("SERVER_PORT")))
 }
