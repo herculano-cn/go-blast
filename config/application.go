@@ -1,12 +1,10 @@
 package config
 
 import (
-	"fmt"
 	"log"
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/spf13/viper"
 )
 
 type Config struct {
@@ -25,22 +23,24 @@ func getConfigName() string {
 }
 
 func LoadConfig() (*Config, error) {
-	viper.SetConfigName(ConfigName)
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath("config/environments")
-
-	viper.AutomaticEnv()
-
-	if err := viper.ReadInConfig(); err != nil {
-		return nil, fmt.Errorf("failed to read config file: %w", err)
-	}
-
-	var config Config
-
-	err := viper.Unmarshal(&config)
+	err := godotenv.Load()
 	if err != nil {
-		return nil, fmt.Errorf("failed to unmarshal config: %w", err)
+		log.Fatal("Error loading .env file")
 	}
 
-	return &config, nil
+	config := &Config{
+		Database: DatabaseConfig{
+			Host:     os.Getenv("DB_HOST"),
+			Port:     os.Getenv("DB_PORT"),
+			Username: os.Getenv("DB_USERNAME"),
+			Password: os.Getenv("DB_PASSWORD"),
+			Name:     os.Getenv("DB_NAME"),
+			SSLMode:  os.Getenv("DB_SSLMODE"),
+		},
+		Server: ServerConfig{
+			Port: os.Getenv("SERVER_PORT"),
+		},
+	}
+
+	return config, nil
 }
