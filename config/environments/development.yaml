@@ -1,0 +1,9 @@
+database:
+  host: localhost
+  username: postgres
+  password: postgres
+  name: example_db_development
+  port: 5432
+  sslmode: disable
+server:
+  port: 8080
