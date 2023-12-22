@@ -2,6 +2,6 @@ database:
   host: localhost
   username: postgres
   password: postgres
-  name: example_db_test
+  name: blast_db_test
   port: 5432
   sslmode: disable
