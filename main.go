@@ -5,7 +5,7 @@ import (
 	"blast/data"
 )
 
-func maikbp() {
+func main() {
 	go data.ConnectDB()
 	app.BuildNewRoutes()
 }
