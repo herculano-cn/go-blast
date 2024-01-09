@@ -2,6 +2,8 @@ package config
 
 import (
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/spf13/viper"
 )
@@ -12,7 +14,12 @@ type Config struct {
 }
 
 func LoadConfig() (*Config, error) {
-	viper.SetConfigName("development")
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading env file")
+	}
+
+	viper.SetConfigName(os.Getenv("ENV"))
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath("config/environments")
 
