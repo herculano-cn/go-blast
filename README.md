@@ -15,7 +15,7 @@ Then you need to rename .env-example file to .env. So you can update config/envi
 
 Create project PostgreSQL database. First, make sure you have postgreSQL driver on your environment. Then you can go bblast with
 
-`blast db:create` or you can create your own database name `blast db:create --dbname <db_name>`
+`blast db:create` or you can create your own database name `blast db:create --dbname=<db_name>` or `blast db:create --from-config`
 
 Run project 
 
